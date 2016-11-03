@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+
 import './App.css';
 
 class App extends Component {
@@ -7,15 +8,22 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <img src="https://placekitten.com/100/100" alt="logo" />
+          <h2>Movie List</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {this.props.hi}
         </p>
       </div>
     );
   }
 }
 
-export default App;
+export function mapStateToProps(state) {
+  console.log(state && state.toJS())
+  return {
+    hi: state.get('hello')
+  }
+}
+
+export default connect(mapStateToProps)(App);
