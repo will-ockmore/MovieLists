@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { increment, incrementAsync } from './actions';
 
+import { changeSearchQuery } from '../redux/actions';
 import './App.css';
 
 class App extends Component {
   render() {
-  const { incrementCounter, incrementCounterAsync, count } = this.props;
+  const { updateQuery, query, text } = this.props;
 
     return (
       <div className="App">
@@ -14,14 +14,9 @@ class App extends Component {
           <img src="https://placekitten.com/100/100" alt="logo" />
           <h2>Movie List</h2>
         </div>
-        <button onClick={incrementCounter}>
-          Increment
-        </button>
-        <button onClick={incrementCounterAsync}>
-          Increment Async
-        </button>
+        <input type="text" value={query} onChange={e => updateQuery(e.target.value)} />
         <p className="App-intro">
-          {count}
+          {text}
         </p>
       </div>
     );
@@ -30,6 +25,8 @@ class App extends Component {
 
 export function mapStateToProps(state) {
   return {
+    query: state.get('query'),
+    text: state.get('text'),
     count: state.get('count')
   }
 }
@@ -37,7 +34,6 @@ export function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    incrementCounter: increment,
-    incrementCounterAsync: incrementAsync
+    updateQuery: changeSearchQuery,
   }
 )(App);
