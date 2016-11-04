@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { increment } from './actions';
+import { increment, incrementAsync } from './actions';
 
 import './App.css';
 
 class App extends Component {
   render() {
-  const { incrementCounter, count } = this.props;
+  const { incrementCounter, incrementCounterAsync, count } = this.props;
 
     return (
       <div className="App">
@@ -16,6 +16,9 @@ class App extends Component {
         </div>
         <button onClick={incrementCounter}>
           Increment
+        </button>
+        <button onClick={incrementCounterAsync}>
+          Increment Async
         </button>
         <p className="App-intro">
           {count}
@@ -31,4 +34,10 @@ export function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { incrementCounter: increment })(App);
+export default connect(
+  mapStateToProps,
+  {
+    incrementCounter: increment,
+    incrementCounterAsync: incrementAsync
+  }
+)(App);

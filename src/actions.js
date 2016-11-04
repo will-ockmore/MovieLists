@@ -5,3 +5,8 @@ export function increment() {
     type: INCREMENT
   }
 }
+
+export function incrementAsync() {
+  return dispatch =>
+    setTimeout(() => dispatch(increment()), 2000);
+}
