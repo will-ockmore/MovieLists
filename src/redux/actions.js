@@ -5,3 +5,8 @@ export function changeSearchQuery(query) {
     payload: query
   };
 }
+
+export const GET_API_CONFIG = 'GET_API_CONFIG';
+export function getApiConfiguration() {
+  return { type: GET_API_CONFIG };
+}

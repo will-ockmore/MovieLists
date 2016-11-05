@@ -7,4 +7,6 @@ export const SEARCH = {
   PEOPLE: '/search/person',
 }
 
+export const CONFIGURATION = '/configuration';
+
 export const API_KEY = process.env.REACT_APP_API_KEY;
