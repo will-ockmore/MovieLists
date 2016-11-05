@@ -1,5 +1,6 @@
 import { takeLatest, delay } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
+import { searchMovies } from '../api/search';
 
 import * as actions from './actions';
 
@@ -7,12 +8,7 @@ import * as actions from './actions';
 function* fetchMovieResults(action) {
    try {
       yield delay(200);
-
-      const fetchMovies = query =>
-        fetch('https://api.themoviedb.org/3/search/movie?api_key=222b25964071b4f51f70335f0a47603d&query=' + query)
-          .then(response => response.json());
-
-      const results = yield call(fetchMovies, action.payload);
+      const results = yield call(searchMovies, action.payload);
       yield put({type: 'GET_MOVIES_SUCCESS', payload: results});
    } catch (e) {
       yield put({type: "GET_MOVIES_FAILED", payload: e.message});
@@ -21,14 +17,13 @@ function* fetchMovieResults(action) {
 
 /*
   Starts fetchMovieResults on each dispatched `USER_FETCH_REQUESTED` action.
-  Allows concurrent fetches of user.
 */
-function* searchMovies() {
+function* searchForMovies() {
   yield* takeLatest(actions.CHANGE_SEARCH_QUERY, fetchMovieResults);
 }
 
 export default function* rootSaga() {
   yield [
-    searchMovies(),
+    searchForMovies(),
   ]
 };
