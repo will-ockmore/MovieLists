@@ -6,18 +6,28 @@ import './App.css';
 
 class App extends Component {
   render() {
-  const { updateQuery, query, text } = this.props;
+    const { updateQuery, query, response } = this.props;
+
+    const results = response && response.get('results');
+
+    console.log(results && results.toJS())
 
     return (
       <div className="App">
-        <div className="App-header">
-          <img src="https://placekitten.com/100/100" alt="logo" />
-          <h2>Movie List</h2>
+        <div className="header row App-header">
+          <h2>Movie List.</h2>
         </div>
-        <input type="text" value={query} onChange={e => updateQuery(e.target.value)} />
-        <p className="App-intro">
-          {text}
-        </p>
+        <div className="body row scroll-y App-body">
+          <h2>Search for a film below</h2>
+          <hr className="search-break" />
+          <input type="text" value={query} onChange={e => updateQuery(e.target.value)} />
+          {results && results.map(movie =>
+              <p className="App-intro">{movie.get('title')}</p>
+          )}
+        </div>
+        <div className="footer row App-footer">
+          footer
+        </div>
       </div>
     );
   }
@@ -26,7 +36,7 @@ class App extends Component {
 export function mapStateToProps(state) {
   return {
     query: state.get('query'),
-    text: state.get('text'),
+    response: state.get('response'),
     count: state.get('count')
   }
 }
