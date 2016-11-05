@@ -10,9 +10,19 @@
   .scroll-x { overflow-x: auto; }
   .scroll-y { overflow-y: auto; }
 
-  .header.row { height: 80px; top: 0; }
-  .body.row { top: 100px; bottom: 50px; }
-  .footer.row { height: 50px; bottom: 0; }
+  .header.row {
+    height: 80px;
+    top: 0;
+  }
+
+  .body.row { top: 100px; bottom: 0px; }
+  // .footer.row { height: 50px; bottom: 0; }
+
+  /* scrollbar rules */
+  ::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+  }
 
   /* end of screen rules. */
 }
@@ -35,6 +45,9 @@
   color: #fffefe;
 }
 
+.box-shadow {
+}
+
 .App-body {
   background-color: #fffefe;
   color: #5b5b5b;
@@ -49,20 +62,41 @@
   border: 0;
   height: 2px;
   width: 5%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   background: #cb4a38;
 }
 
 .App-footer {
   text-align: left;
   padding: 0px 10px;
+  box-shadow: 1px 1px 3px 1px #5b5b5b;
   font-size: small;
   line-height: 50px;
 }
 
-/* @group layout */
+/* @group search-input */
+.search-input input[type="text"] {
+  margin: 0;
+  width: 50%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}
 
-/* @end layout */
+.search-input input[type="text"] {
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+.search-input input[type="text"]:focus,
+.search-input input[type="text"].focus {
+  outline: none;
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+/* @end input */
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

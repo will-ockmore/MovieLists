@@ -14,19 +14,19 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="header row App-header">
+        <div className="header row App-header box-shadow">
           <h2>Movie List.</h2>
         </div>
         <div className="body row scroll-y App-body">
           <h2>Search for a film below</h2>
           <hr className="search-break" />
-          <input type="text" value={query} onChange={e => updateQuery(e.target.value)} />
+          <div className="search-input">
+            <input type="text" value={query} onChange={e => updateQuery(e.target.value)} />
+          </div>
+
           {results && results.map(movie =>
               <p className="App-intro">{movie.get('title')}</p>
           )}
-        </div>
-        <div className="footer row App-footer">
-          footer
         </div>
       </div>
     );
