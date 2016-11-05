@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { changeSearchQuery } from '../redux/actions';
+import SearchField from './SearchField';
+import ResultCard from './ResultCard';
 import './App.css';
 
 class App extends Component {
@@ -9,8 +11,6 @@ class App extends Component {
     const { updateQuery, query, response } = this.props;
 
     const results = response && response.get('results');
-
-    console.log(results && results.toJS())
 
     return (
       <div className="App">
@@ -20,12 +20,10 @@ class App extends Component {
         <div className="body row scroll-y App-body">
           <h2>Search for a film below</h2>
           <hr className="search-break" />
-          <div className="search-input">
-            <input type="text" value={query} onChange={e => updateQuery(e.target.value)} />
-          </div>
+          <SearchField query={query} updateQuery={updateQuery} />
 
-          {results && results.map(movie =>
-              <p className="App-intro">{movie.get('title')}</p>
+          {results.map(movie =>
+              <ResultCard key={movie.get('id')} movie={movie} />
           )}
         </div>
       </div>

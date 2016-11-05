@@ -1,9 +1,9 @@
-import { Map, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 
 import * as actions from './actions';
 
 
-export default function(state = Map({query: '', response: Map()}), action) {
+export default function(state = fromJS({query: '', response: {results: []}}), action) {
   switch (action.type) {
     case actions.CHANGE_SEARCH_QUERY:
       return state.set('query', action.payload);
