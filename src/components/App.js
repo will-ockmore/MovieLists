@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { changeSearchQuery, getApiConfiguration } from '../redux/actions';
+
 import SearchField from './SearchField';
-import ResultCard from './ResultCard';
+import CardList from './CardList';
 import './App.css';
 
 class App extends Component {
+
   componentWillMount() {
     this.props.getApiConfiguration();
   }
@@ -27,14 +29,7 @@ class App extends Component {
           <h2>Search for a film below</h2>
           <hr className="search-break" />
           <SearchField query={query} updateQuery={updateQuery} />
-          <div className="card-container">
-            {results.map(movie =>
-                <ResultCard
-                  key={movie.get('id')}
-                  movie={movie}
-                  basePosterUrl={basePosterUrl}/>
-            )}
-          </div>
+          <CardList results={results} basePosterUrl={basePosterUrl} />
         </div>
       </div>
     );

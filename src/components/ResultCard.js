@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 
-export const ResultCard = ({ movie, basePosterUrl }) =>
-  <div className="card">
-    {console.log(basePosterUrl + movie.get('poster_path'))}
-    <div className="avatar">
-      <img src={basePosterUrl + movie.get('poster_path')} alt="poster" />
-    </div>
-    <div className="text-content">
-      <h2>{movie.get('title')}</h2>
-      <span><i>Released:</i> {movie.get('release_date')}</span>
-      <div className="description">{movie.get('overview')}</div>
-    </div>
-  </div>;
+class ResultCard extends Component {
+  render() {
+    const { movie, basePosterUrl } = this.props
+    const { overview, backdrop_path, title, release_date } = movie.toObject();
+
+    if (!overview || !backdrop_path) {
+      return <noscript />;
+    }
+
+    return (
+      <div className="card">
+        <div className="avatar pd-2">
+          <img src={basePosterUrl + backdrop_path} alt="poster" />
+        </div>
+        <div className="text-content pd-2">
+          <h2>{title}</h2>
+          <span><i>Released:</i> {release_date}</span>
+          <div className="description pd-2">{overview}</div>
+        </div>
+      </div>
+    );
+  }
+}
 
 
 export default ResultCard;
