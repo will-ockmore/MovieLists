@@ -32,7 +32,6 @@ export default function(state = initialState, action) {
         .setIn(['responses', 'movieDetails', 'result'], fromJS(action.payload))
         .setIn(['responses', 'movieDetails', 'status'], responseStates.SUCCESS);
     case sagaActions.GET_BACKDROP_URL.SUCCESS:
-      console.log(action.payload);
       const { secure_base_url, backdrop_sizes, profile_sizes } = action.payload;
 
       const smallBackdropUrl = secure_base_url + backdrop_sizes[0];

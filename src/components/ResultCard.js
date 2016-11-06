@@ -12,18 +12,16 @@ class ResultCard extends Component {
     }
 
     return (
-      <div className="card">
-        <Link to={`/${id}`}>
-          <div className="avatar pd-2">
-            <img src={smallBackdropUrl + backdrop_path} alt="poster" />
-          </div>
-          <div className="text-content pd-2">
-            <h2>{title}</h2>
-            <span><i>Released:</i> {release_date}</span>
-            <div className="description pd-2">{overview}</div>
-          </div>
-        </Link>
-      </div>
+      <Link className="card" to={`/${id}`}>
+        <div className="avatar pd-2">
+          <img src={smallBackdropUrl + backdrop_path} alt="poster" />
+        </div>
+        <div className="text-content pd-2">
+          <h2>{title}</h2>
+          <span><i>Released:</i> {release_date}</span>
+          <div className="description pd-2">{overview}</div>
+        </div>
+      </Link>
     );
   }
 }

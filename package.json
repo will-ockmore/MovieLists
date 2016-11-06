@@ -2,6 +2,7 @@
   "name": "movie-lists",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://will-ockmore.github.io/MovieLists",
   "devDependencies": {
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
@@ -49,6 +50,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "gh-pages": "^0.11.0",
     "immutable": "=3.8.1",
     "react": "=15.3.2",
     "react-addons-css-transition-group": "=15.3.2",
@@ -61,7 +63,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "deploy": "gh-pages -d build"
   },
   "jest": {
     "moduleFileExtensions": [

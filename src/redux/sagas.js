@@ -60,7 +60,7 @@ export const GET_MOVIE_DETAILS = makeRequestActionSet('GET_MOVIE_DETAILS');
 
 function* fetchMovieDetails(action) {
  try {
-  // yield put({type: GET_MOVIE_DETAILS.REQUEST, payload: action.payload});
+  yield put({type: GET_MOVIE_DETAILS.REQUEST, payload: action.payload});
   const response = yield call(getMovie, action.payload.id, Map({append_to_response: 'credits, recommendations'}));
 
   yield put({type: GET_MOVIE_DETAILS.SUCCESS, payload: response});

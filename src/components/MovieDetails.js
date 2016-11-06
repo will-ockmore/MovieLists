@@ -13,16 +13,26 @@ class MovieDetails extends Component {
     loadDetails(id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { loadDetails, id } = this.props;
+
+    if (nextProps.params.id !== id) {
+      loadDetails(nextProps.id);
+    }
+  }
+
   render() {
-    const { details, largeBackdropUrl } = this.props
-    const { result, response } = details.toObject();
+    const { details, largeBackdropUrl, id } = this.props
+    const { result, status } = details.toObject();
     const { title, backdrop_path, overview, tagline, release_date, vote_average, original_title } = result.toObject();
 
 
     console.log(result.toJS());
 
+    console.log(status);
 
-    if (response === 'PENDING') {
+
+    if (status === 'PENDING') {
       return <Loading />;
     }
 
