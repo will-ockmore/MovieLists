@@ -69,9 +69,6 @@
   color: #fffefe;
 }
 
-.box-shadow {
-}
-
 .App-body {
   background-color: #fffefe;
   color: #5b5b5b;
@@ -122,6 +119,7 @@
 /* @end input */
 
 /* @group card */
+
 .card-container {
   display: flex;
   flex-direction:row;
@@ -171,7 +169,7 @@
 
 .card-anim-leave.card-anim-leave-active {
   opacity: 0.01;
-  transition: opacity 100ms ease-in;
+  transition: opacity 300ms ease-in;
 }
 
 

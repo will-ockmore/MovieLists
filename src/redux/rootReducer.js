@@ -1,21 +1,38 @@
 import { fromJS } from 'immutable';
 
 import * as actions from './actions';
+import * as sagaActions from './sagas';
 
 const initialState = fromJS({
   query: '',
-  response: {results: []},
-  basePosterUrl: ''
+  responses: {
+    movies: {results: []},
+    movieDetails: { status: '', result: {}}
+  },
+  baseBackdropUrl: ''
 })
+
+export const responseStates = {
+  SUCCESS: 'SUCCESS',
+  PENDING: 'PENDING',
+  FAILED: 'FAILED',
+}
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case actions.CHANGE_SEARCH_QUERY:
       return state.set('query', action.payload);
-    case 'GET_MOVIES_SUCCESS':
-      return state.set('response', fromJS(action.payload));
-    case 'GET_POSTER_URL_SUCCESS':
-      return state.set('basePosterUrl', fromJS(action.payload));
+    case sagaActions.GET_MOVIES.SUCCESS:
+      return state.setIn(['responses', 'movies'], fromJS(action.payload));
+    case sagaActions.GET_MOVIE_DETAILS.REQUEST:
+      return state
+        .setIn(['responses', 'movieDetails', 'status'], responseStates.PENDING);
+    case sagaActions.GET_MOVIE_DETAILS.SUCCESS:
+      return state
+        .setIn(['responses', 'movieDetails', 'result'], fromJS(action.payload))
+        .setIn(['responses', 'movieDetails', 'status'], responseStates.SUCCESS);
+    case sagaActions.GET_BACKDROP_URL.SUCCESS:
+      return state.set('baseBackdropUrl', fromJS(action.payload));
     default:
       return state;
   }

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 class ResultCard extends Component {
   render() {
-    const { movie, basePosterUrl } = this.props
+    const { movie, baseBackdropUrl } = this.props
     const { overview, backdrop_path, title, release_date } = movie.toObject();
 
     if (!overview || !backdrop_path) {
@@ -13,7 +13,7 @@ class ResultCard extends Component {
     return (
       <div className="card">
         <div className="avatar pd-2">
-          <img src={basePosterUrl + backdrop_path} alt="poster" />
+          <img src={baseBackdropUrl + backdrop_path} alt="poster" />
         </div>
         <div className="text-content pd-2">
           <h2>{title}</h2>

@@ -1,19 +1,30 @@
 import { takeLatest, takeEvery, delay } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import { searchMovies } from '../api/search';
+import { getMovie } from '../api/items';
 import { getConfig } from '../api/config';
 
 import * as actions from './actions';
 
+export function makeRequestActionSet(actionType) {
+  return {
+    REQUEST: actionType + 'REQUEST',
+    SUCCESS: actionType + 'SUCCESS',
+    FAILURE: actionType + 'FAILURE',
+  }
+}
+
 // worker Saga: will be fired on actions
+export const GET_MOVIES = makeRequestActionSet('GET_MOVIES');
+
 function* fetchMovieResults(action) {
   if (action.payload) {
    try {
     yield delay(200);
     const results = yield call(searchMovies, action.payload);
-    yield put({type: 'GET_MOVIES_SUCCESS', payload: results});
+    yield put({type: GET_MOVIES.SUCCESS, payload: results});
     } catch (e) {
-      yield put({type: "GET_MOVIES_FAILED", payload: e.message});
+      yield put({type: GET_MOVIES.FAILURE, payload: e.message});
     }
   }
 }
@@ -26,26 +37,46 @@ function* searchForMovies() {
 }
 
 // worker Saga: will be fired on actions
-function* fetchPosterUrl(action) {
+export const GET_BACKDROP_URL = makeRequestActionSet('GET_BACKDROP_URL');
+
+function* fetchBackdropUrl(action) {
  try {
   const response = yield call(getConfig);
-  console.log(response);
   const { secure_base_url, backdrop_sizes } = response.images;
   const imageUrl = secure_base_url + backdrop_sizes[0];
 
-  yield put({type: 'GET_POSTER_URL_SUCCESS', payload: imageUrl});
+  yield put({type: GET_BACKDROP_URL.SUCCESS, payload: imageUrl});
   } catch (e) {
-    yield put({type: "GET_POSTER_URL_FAILED", payload: e.message});
+    yield put({type: GET_BACKDROP_URL.FAILURE, payload: e.message});
   }
 }
 
-function* getPosterUrl() {
-  yield* takeEvery(actions.GET_API_CONFIG, fetchPosterUrl);
+function* getBackdropUrl() {
+  yield* takeEvery(actions.GET_API_CONFIG, fetchBackdropUrl);
+}
+
+// worker Saga: will be fired on actions
+export const GET_MOVIE_DETAILS = makeRequestActionSet('GET_MOVIE_DETAILS');
+
+function* fetchMovieDetails(action) {
+ try {
+  // yield put({type: GET_MOVIE_DETAILS.REQUEST, payload: action.payload});
+  const response = yield call(getMovie, action.payload.id);
+
+  yield put({type: GET_MOVIE_DETAILS.SUCCESS, payload: response});
+  } catch (e) {
+    yield put({type: GET_MOVIE_DETAILS.FAILURE, payload: e.message});
+  }
+}
+
+function* getMovieDetails() {
+  yield* takeEvery(actions.LOAD_MOVIE_DETAILS, fetchMovieDetails);
 }
 
 export default function* rootSaga() {
   yield [
     searchForMovies(),
-    getPosterUrl(),
+    getBackdropUrl(),
+    getMovieDetails(),
   ]
 };

@@ -3,17 +3,17 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ResultCard from './ResultCard';
 
-export const CardList = ({ results, basePosterUrl }) =>
+export const CardList = ({ results, baseBackdropUrl }) =>
   <CSSTransitionGroup
     className="card-container"
     transitionName="card-anim"
     transitionEnterTimeout={500}
-    transitionLeaveTimeout={100}>
+    transitionLeaveTimeout={300}>
     {results.map(movie =>
         <ResultCard
           key={movie.get('id')}
           movie={movie}
-          basePosterUrl={basePosterUrl}/>
+          baseBackdropUrl={baseBackdropUrl}/>
     )}
   </CSSTransitionGroup>;
 
