@@ -27,16 +27,58 @@
   /* end of screen rules. */
 }
 
+/* @group resets */
+
+a, u {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* @end resets */
+
+/* @group flexrow */
+.fl-row {
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+}
+
+.fl-1 {
+  flex: 1;
+}
+
+.fl-2 {
+  flex: 2;
+}
+
+.fl-3 {
+  flex: 3;
+}
+/* @end flexrow */
+
 /* @group text */
-.text-sm {
+.t-sm {
   font-size: small;
 }
-.text-m {
+.t-m {
   font-size: medium;
 }
-.text-xl {
+.t-xl {
   font-size: x-large;
 }
+
+.t-l {
+  font-size: large;
+}
+
+.t-left {
+  text-align: left;
+}
+
+.t-right {
+  text-align: right;
+}
+
 /* @end text */
 
 /* @group padding */
@@ -64,7 +106,6 @@
   font-family: 'Permanent Marker', cursive;
   font-size: 2em;
   background-color: #cc2a40;
-  // padding: 10px 0px 10px;
   line-height: 0px;
   color: #fffefe;
 }
@@ -214,3 +255,20 @@
     }
  }
 /* @end loading spinner */
+
+/* @group movie details */
+.movie-details {
+  display: table;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+.movie-details .mv-title {
+  font-size: 2em;
+}
+
+.movie-details .overview {
+  text-align: left;
+}
+/* @end movie details */

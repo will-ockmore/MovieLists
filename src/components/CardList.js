@@ -3,7 +3,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ResultCard from './ResultCard';
 
-export const CardList = ({ results, baseBackdropUrl }) =>
+export const CardList = ({ results, smallBackdropUrl }) =>
   <CSSTransitionGroup
     className="card-container"
     transitionName="card-anim"
@@ -13,7 +13,7 @@ export const CardList = ({ results, baseBackdropUrl }) =>
         <ResultCard
           key={movie.get('id')}
           movie={movie}
-          baseBackdropUrl={baseBackdropUrl}/>
+          smallBackdropUrl={smallBackdropUrl}/>
     )}
   </CSSTransitionGroup>;
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { getApiConfiguration } from '../redux/actions';
 
@@ -16,9 +17,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="header row App-header">
-          <h2>Movie List.</h2>
-        </div>
+        <Link to="/">
+          <div className="header row App-header">
+            <h2>Movie List.</h2>
+          </div>
+        </Link>
         <div className="body row scroll-y App-body">
           {children}
         </div>

@@ -9,7 +9,7 @@ const initialState = fromJS({
     movies: {results: []},
     movieDetails: { status: '', result: {}}
   },
-  baseBackdropUrl: ''
+  imageUrls: {smallBackdropUrl: '', largeBackdropUrl: ''}
 })
 
 export const responseStates = {
@@ -32,7 +32,14 @@ export default function(state = initialState, action) {
         .setIn(['responses', 'movieDetails', 'result'], fromJS(action.payload))
         .setIn(['responses', 'movieDetails', 'status'], responseStates.SUCCESS);
     case sagaActions.GET_BACKDROP_URL.SUCCESS:
-      return state.set('baseBackdropUrl', fromJS(action.payload));
+      console.log(action.payload);
+      const { secure_base_url, backdrop_sizes, profile_sizes } = action.payload;
+
+      const smallBackdropUrl = secure_base_url + backdrop_sizes[0];
+      const largeBackdropUrl = secure_base_url + backdrop_sizes[1];
+      const smallProfileUrl = secure_base_url + profile_sizes[0];
+
+      return state.mergeIn(['imageUrls'], {smallBackdropUrl, largeBackdropUrl, smallProfileUrl});
     default:
       return state;
   }

@@ -1,5 +1,7 @@
 import { takeLatest, takeEvery, delay } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
+import { Map } from 'immutable';
+
 import { searchMovies } from '../api/search';
 import { getMovie } from '../api/items';
 import { getConfig } from '../api/config';
@@ -42,10 +44,8 @@ export const GET_BACKDROP_URL = makeRequestActionSet('GET_BACKDROP_URL');
 function* fetchBackdropUrl(action) {
  try {
   const response = yield call(getConfig);
-  const { secure_base_url, backdrop_sizes } = response.images;
-  const imageUrl = secure_base_url + backdrop_sizes[0];
 
-  yield put({type: GET_BACKDROP_URL.SUCCESS, payload: imageUrl});
+  yield put({type: GET_BACKDROP_URL.SUCCESS, payload: response.images});
   } catch (e) {
     yield put({type: GET_BACKDROP_URL.FAILURE, payload: e.message});
   }
@@ -61,7 +61,7 @@ export const GET_MOVIE_DETAILS = makeRequestActionSet('GET_MOVIE_DETAILS');
 function* fetchMovieDetails(action) {
  try {
   // yield put({type: GET_MOVIE_DETAILS.REQUEST, payload: action.payload});
-  const response = yield call(getMovie, action.payload.id);
+  const response = yield call(getMovie, action.payload.id, Map({append_to_response: 'credits, recommendations'}));
 
   yield put({type: GET_MOVIE_DETAILS.SUCCESS, payload: response});
   } catch (e) {
