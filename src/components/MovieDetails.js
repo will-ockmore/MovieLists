@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { loadMovieDetails } from '../redux/actions';
 
+import Loading from './Loading';
+
 
 class MovieDetails extends Component {
 
@@ -17,8 +19,8 @@ class MovieDetails extends Component {
 
     console.log(details.toJS());
 
-    if (false) {
-      return <noscript />;
+    if (true) {
+      return <Loading />;
     }
 
     return (
