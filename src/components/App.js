@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import { ROOT_ROUTE } from '../index.js';
 import { getApiConfiguration } from '../redux/actions';
 
 import './App.css';
@@ -17,7 +18,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Link to="/">
+        <Link to={ROOT_ROUTE}>
           <div className="header row App-header">
             <h2>Movie List.</h2>
           </div>
