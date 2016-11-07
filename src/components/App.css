@@ -3,7 +3,7 @@
   /* start of screen rules. */
 
   /* Generic pane rules */
-  body { margin: 0; line-height: 1.5rem; }
+  body { margin: 0; line-height: 1.5em; }
   .row, .col { overflow: hidden; position: absolute; }
   .row { left: 0; right: 0; }
   .col { top: 0; bottom: 0; }
@@ -37,6 +37,7 @@ a, u {
 h1,
 h2,
 strong {
+  line-height: 1em;
   color: #333;
 }
 
@@ -101,6 +102,16 @@ strong {
 .mt-2 {
   margin-top: 20px;
 }
+
+.mb-1 {
+  margin-bottom: 10px;
+}
+
+.mb-2 {
+  margin-bottom: 20px;
+}
+
+
 /* @end margin */
 
 /* @group padding */
@@ -128,17 +139,18 @@ strong {
   font-family: 'Permanent Marker', cursive;
   font-size: 2em;
   background-color: #cc2a40;
-  line-height: 0px;
 }
 
 #header-title {
   color: #fffefe;
+  line-height: 0px;
 }
 
 .App-body {
   background-color: #fffefe;
   color: #333;
   padding: 10px;
+  line-height: 1.5em;
 }
 
 .App-intro {

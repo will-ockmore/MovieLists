@@ -28,10 +28,13 @@ class MovieDetails extends Component {
     const {
       title, backdrop_path, overview,
       tagline, release_date, vote_average,
-      original_title, credits, vote_count
+      original_title, credits, vote_count,
+      runtime
     } = result.toObject();
 
     const { cast, crew } = credits.toObject();
+
+    console.log(result.toJS());
 
     if (status === 'PENDING') {
       return <Loading />;
@@ -43,14 +46,14 @@ class MovieDetails extends Component {
       <div className="movie-details">
         <img className="splash" src={largeBackdropUrl + backdrop_path} alt="poster" />
         <h1 className="mv-title">{title}{original_title && original_title !== title && ` (${original_title})`}</h1>
-        {tagline && <h4 className="tagline">&ldquo;<em>{tagline}</em>&rdquo;</h4>}
-        <div className="t-left">{overview}</div>
+        {tagline && <h4 className="tagline">&ldquo;<em>{tagline}</em> &rdquo;</h4>}
+        <div className="t-left mb-2">{overview}</div>
 
         {hasMultipleVotes &&
           <div className="fl-row">
             <div className="fl-1">
               <label className="property-title">
-                <strong>Rating</strong> :
+                <strong>Rating:</strong>
               </label>
             </div>
             <div className="fl-1">
@@ -61,14 +64,27 @@ class MovieDetails extends Component {
           </div>
         }
 
-        <div className="fl-row">
-          <div className="fl-1">
-            <label className="property-title"><strong>Release date</strong> :</label>
+        {runtime &&
+          <div className="fl-row">
+            <div className="fl-1">
+              <label className="property-title"><strong>Runtime</strong>:</label>
+            </div>
+            <div className="fl-1">
+              <label className="property-value">{runtime} mins</label>
+            </div>
           </div>
-          <div className="fl-1">
-            <label className="property-value">{release_date}</label>
+        }
+
+        {release_date &&
+          <div className="fl-row">
+            <div className="fl-1">
+              <label className="property-title"><strong>Release date</strong>:</label>
+            </div>
+            <div className="fl-1">
+              <label className="property-value">{release_date}</label>
+            </div>
           </div>
-        </div>
+        }
 
         <h2>Cast & crew</h2>
 
