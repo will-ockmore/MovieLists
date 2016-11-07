@@ -21,7 +21,7 @@ export const responseStates = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case actions.CHANGE_SEARCH_QUERY:
-      return state.set('query', action.payload);
+      return state.set('query', action.payload.query);
     case sagaActions.GET_MOVIES.SUCCESS:
       return state.setIn(['responses', 'movies'], fromJS(action.payload));
     case sagaActions.GET_MOVIE_DETAILS.REQUEST:

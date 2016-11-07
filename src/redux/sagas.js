@@ -20,10 +20,13 @@ export function makeRequestActionSet(actionType) {
 export const GET_MOVIES = makeRequestActionSet('GET_MOVIES');
 
 function* fetchMovieResults(action) {
-  if (action.payload) {
+  const { query, noDelay } = action.payload;
+  if (query) {
    try {
-    yield delay(200);
-    const results = yield call(searchMovies, action.payload);
+    if (!noDelay) {
+      yield delay(200);
+    }
+    const results = yield call(searchMovies, action.payload.query);
     yield put({type: GET_MOVIES.SUCCESS, payload: results});
     } catch (e) {
       yield put({type: GET_MOVIES.FAILURE, payload: e.message});

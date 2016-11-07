@@ -1,8 +1,8 @@
 export const CHANGE_SEARCH_QUERY = 'CHANGE_SEARCH_QUERY';
-export function changeSearchQuery(query) {
+export function changeSearchQuery(query, noDelay) {
   return {
     type: CHANGE_SEARCH_QUERY,
-    payload: query
+    payload: { query, noDelay }
   };
 }
 

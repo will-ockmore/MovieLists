@@ -34,8 +34,6 @@ class MovieDetails extends Component {
 
     const { cast, crew } = credits.toObject();
 
-    console.log(result.toJS());
-
     if (status === 'PENDING') {
       return <Loading />;
     }
