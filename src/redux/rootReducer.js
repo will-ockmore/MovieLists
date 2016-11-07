@@ -7,7 +7,7 @@ const initialState = fromJS({
   query: '',
   responses: {
     movies: {results: []},
-    movieDetails: { status: '', result: {}}
+    movieDetails: { status: '', result: { credits: {} }}
   },
   imageUrls: {smallBackdropUrl: '', largeBackdropUrl: ''}
 })

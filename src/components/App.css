@@ -3,7 +3,7 @@
   /* start of screen rules. */
 
   /* Generic pane rules */
-  body { margin: 0 }
+  body { margin: 0; line-height: 1.5rem; }
   .row, .col { overflow: hidden; position: absolute; }
   .row { left: 0; right: 0; }
   .col { top: 0; bottom: 0; }
@@ -27,14 +27,20 @@
   /* end of screen rules. */
 }
 
-/* @group resets */
+/* @group elements */
 
 a, u {
   text-decoration: none;
   color: inherit;
 }
 
-/* @end resets */
+h1,
+h2,
+strong {
+  color: #333;
+}
+
+/* @end elements */
 
 /* @group flexrow */
 .fl-row {
@@ -81,6 +87,16 @@ a, u {
 
 /* @end text */
 
+/* @group margin */
+.mt-1 {
+  margin-top: 10px;
+}
+
+.mt-2 {
+  margin-top: 20px;
+}
+/* @end margin */
+
 /* @group padding */
 .pd-1 {
   padding: 2px;
@@ -107,12 +123,15 @@ a, u {
   font-size: 2em;
   background-color: #cc2a40;
   line-height: 0px;
+}
+
+#header-title {
   color: #fffefe;
 }
 
 .App-body {
   background-color: #fffefe;
-  color: #5b5b5b;
+  color: #333;
   padding: 10px;
 }
 
@@ -275,5 +294,28 @@ a, u {
 
 .movie-details .overview {
   text-align: left;
+}
+
+.movie-details .property-title {
+    white-space: nowrap;
+    margin-top: 0.3em;
+    display:block;
+    text-align: right;
+    width: auto;
+}
+.movie-details .titles{
+    display:inline-block;
+}
+
+.movie-details .property-value {
+    white-space: nowrap;
+    margin-left: 0.5em;
+    margin-top: 0.3em;
+    text-align: left;
+    display:block;
+    width: auto;
+}
+.movie-details .values {
+    display:inline-block;
 }
 /* @end movie details */

@@ -20,7 +20,7 @@ class App extends Component {
       <div className="App">
         <Link to={ROOT_ROUTE}>
           <div className="header row App-header">
-            <h2>Movie List.</h2>
+            <h2 id="header-title">Movie List.</h2>
           </div>
         </Link>
         <div className="body row scroll-y App-body">
