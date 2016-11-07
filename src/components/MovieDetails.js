@@ -29,9 +29,6 @@ class MovieDetails extends Component {
 
     console.log(result.toJS());
 
-    console.log(status);
-
-
     if (status === 'PENDING') {
       return <Loading />;
     }

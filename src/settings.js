@@ -12,4 +12,5 @@ export const MOVIE = '/movie';
 
 export const CONFIGURATION = '/configuration';
 
-export const API_KEY = process.env.REACT_APP_API_KEY;
+export const API_KEY = '222b25964071b4f51f70335f0a47603d';
+// export const API_KEY = process.env.REACT_APP_API_KEY;
