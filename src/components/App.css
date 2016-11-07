@@ -45,8 +45,14 @@ strong {
 /* @group flexrow */
 .fl-row {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: center;
+}
+
+.fl-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .fl-1 {
@@ -297,19 +303,18 @@ strong {
 }
 
 .movie-details .property-title {
-    white-space: nowrap;
-    margin-top: 0.3em;
-    display:block;
-    text-align: right;
-    width: auto;
+  margin-right: 0.3em;
+  margin-top: 0.3em;
+  display:block;
+  text-align: right;
+  width: auto;
 }
 .movie-details .titles{
     display:inline-block;
 }
 
 .movie-details .property-value {
-    white-space: nowrap;
-    margin-left: 0.5em;
+    margin-left: 0.3em;
     margin-top: 0.3em;
     text-align: left;
     display:block;

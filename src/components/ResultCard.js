@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+import { ROOT_ROUTE } from '../index.js';
+
 
 class ResultCard extends Component {
   render() {
@@ -12,7 +14,7 @@ class ResultCard extends Component {
     }
 
     return (
-      <Link className="card" to={`/${id}`}>
+      <Link className="card" to={ROOT_ROUTE + id}>
         <div className="avatar pd-2">
           <img src={smallBackdropUrl + backdrop_path} alt="poster" />
         </div>
