@@ -41,6 +41,43 @@ strong {
   color: #333;
 }
 
+/* select */
+select {
+  font-family: inherit;
+  background-color: transparent;
+  font-size: 0.9rem;
+  color: #333;
+  border: none;
+  border-radius: 1px;
+  box-shadow: 0 0 1px;
+}
+
+/* Remove focus */
+select:focus {
+  outline: none
+}
+
+/* Use custom arrow */
+.mdl-selectfield select {appearance: none}
+.mdl-selectfield {
+  font-family: 'Roboto','Helvetica','Arial',sans-serif;
+  position: relative;
+    &:after {
+        position: absolute;
+        top: 0.75em;
+        right: 0.5em;
+        /* Styling the down arrow */
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: .25em solid transparent;
+        border-right: .25em solid transparent;
+        border-top: .375em solid $select-border-color;
+        pointer-events: none;
+    }
+}
+
 /* @end elements */
 
 /* @group flexrow */
@@ -210,7 +247,6 @@ strong {
   border-radius: 2px;
   margin: 1rem;
   position: relative;
-  min-width: 320px;
   max-width: 320px;
   padding: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -223,6 +259,11 @@ strong {
 
 .card .avatar {
   flex: 1;
+}
+
+.card .backdrop {
+  min-width: 260px;
+  width: 100%
 }
 
 .card .text-content {
@@ -250,8 +291,26 @@ strong {
   transition: opacity 300ms ease-in;
 }
 
-
 /* @end card */
+
+/* @group filters */
+
+.filter-row {
+  height: 100px;
+}
+
+.filter-card {
+  background: #fff;
+  border-radius: 2px;
+  margin: 0 auto;
+  margin-top: 10px;
+  position: relative;
+  max-width: 300px;
+  padding: 10px;
+  // box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+/* @end filters */
 
 /* @group loading spinner */
 

@@ -16,7 +16,7 @@ class ResultCard extends Component {
     return (
       <Link className="card" to={ROOT_ROUTE + id}>
         <div className="avatar pd-2">
-          <img src={smallBackdropUrl + backdrop_path} alt="poster" />
+          <img className="backdrop" src={smallBackdropUrl + backdrop_path} alt="poster" />
         </div>
         <div className="text-content pd-2">
           <h2>{title}</h2>

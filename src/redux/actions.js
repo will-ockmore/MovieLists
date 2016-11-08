@@ -15,3 +15,8 @@ export const LOAD_MOVIE_DETAILS = 'LOAD_MOVIE_DETAILS';
 export function loadMovieDetails(id) {
   return { type: LOAD_MOVIE_DETAILS, payload: { id } };
 }
+
+export const CHANGE_DECADE_FILTER = 'CHANGE_DECADE_FILTER';
+export function changeDecadeFilter(value) {
+  return { type: CHANGE_DECADE_FILTER, payload: { value } };
+}

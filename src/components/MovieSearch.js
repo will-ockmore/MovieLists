@@ -1,22 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
 
 import { changeSearchQuery, getApiConfiguration } from '../redux/actions';
 
 import SearchField from './SearchField';
+import SearchFilters from './SearchFilters';
 import CardList from './CardList';
 
 export const MovieSearch = props => {
-  const { updateQuery, query, response, smallBackdropUrl } = props;
+  const { updateQuery, query, results, groupedResults, smallBackdropUrl, decadeFilterValue } = props;
 
-  const results = response.get('results');
+  const displayedResults = decadeFilterValue ? groupedResults.get(decadeFilterValue, List()) : results;
+
+  console.log(groupedResults.toJS());
 
   return (
     <div>
       <h2>Search for a film below</h2>
       <hr className="search-break" />
       <SearchField query={query} updateQuery={updateQuery} />
-      <CardList results={results} smallBackdropUrl={smallBackdropUrl} />
+      <SearchFilters />
+      <CardList results={displayedResults} smallBackdropUrl={smallBackdropUrl} />
     </div>
   );
 }
@@ -24,8 +29,10 @@ export const MovieSearch = props => {
 export function mapStateToProps(state) {
   return {
     query: state.get('query'),
-    response: state.getIn(['responses', 'movies']),
-    smallBackdropUrl: state.getIn(['imageUrls', 'smallBackdropUrl'])
+    results: state.getIn(['responses', 'movies', 'results']),
+    groupedResults: state.getIn(['responses', 'movies', 'groupedResults']),
+    smallBackdropUrl: state.getIn(['imageUrls', 'smallBackdropUrl']),
+    decadeFilterValue: state.getIn(['filters', 'decade', 'filterValue'])
   }
 }
 
