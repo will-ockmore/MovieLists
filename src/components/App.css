@@ -282,15 +282,6 @@ select:focus {
   transition: opacity 500ms ease-in;
 }
 
-.card-anim-leave {
-  opacity: 1;
-}
-
-.card-anim-leave.card-anim-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
-
 /* @end card */
 
 /* @group filters */

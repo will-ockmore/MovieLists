@@ -8,7 +8,7 @@ export const CardList = ({ results, smallBackdropUrl }) =>
     className="card-container"
     transitionName="card-anim"
     transitionEnterTimeout={500}
-    transitionLeaveTimeout={300}>
+    transitionLeave={false}>
     {results.map(movie =>
         <ResultCard
           key={movie.get('id')}

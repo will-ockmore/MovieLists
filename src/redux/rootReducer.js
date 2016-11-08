@@ -31,10 +31,11 @@ export default function(state = initialState, action) {
 
       const groupedResults =
         results
-          .groupBy(movie => movie.get('release_date', '').charAt(2));
+          .groupBy(movie => movie.get('release_date', '').charAt(2))
+          .sort();
 
       return state
-        .mergeIn(['responses', 'movies'], {results, groupedResults});
+        .mergeIn(['responses', 'movies'], { results, groupedResults });
 
     case sagaActions.GET_MOVIE_DETAILS.REQUEST:
       return state
