@@ -1,6 +1,6 @@
 import { takeLatest, takeEvery, delay } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
-import { Map } from 'immutable';
+import { Map, Range } from 'immutable';
 
 import { searchMovies } from '../api/search';
 import { getMovie } from '../api/items';
@@ -16,26 +16,47 @@ export function makeRequestActionSet(actionType) {
   }
 }
 
-// worker Saga: will be fired on actions
+// get movies saga
 export const GET_MOVIES = makeRequestActionSet('GET_MOVIES');
+export const GET_FURTHER_MOVIES = makeRequestActionSet('GET_FURTHER_MOVIES');
 
+// worker Saga: will be fired on actions
 function* fetchMovieResults(action) {
   const { query, noDelay } = action.payload;
+
   if (query) {
    try {
     if (!noDelay) {
       yield delay(200);
     }
-    const results = yield call(searchMovies, action.payload.query);
-    yield put({type: GET_MOVIES.SUCCESS, payload: results});
+    const response = yield call(searchMovies, action.payload.query);
+
+    yield put({type: GET_MOVIES.SUCCESS, payload: response.results});
+
     } catch (e) {
       yield put({type: GET_MOVIES.FAILURE, payload: e.message});
     }
+
+    yield delay(300);
+
+    try {
+      let furtherResponse = {results: []};
+      for(let i of Range(2, 8)) {
+        console.log(i);
+        furtherResponse = yield call(searchMovies, action.payload.query, { page: i });
+
+        yield put({type: GET_FURTHER_MOVIES.SUCCESS, payload: furtherResponse.results});
+      }
+
+    } catch (e) {
+      yield put({type: GET_FURTHER_MOVIES.FAILURE, payload: e.message})
+    }
+
   }
 }
 
 /*
-  Starts fetchMovieResults on each dispatched `USER_FETCH_REQUESTED` action.
+  Starts fetchMovieResults on each dispatched action.
 */
 function* searchForMovies() {
   yield* takeLatest(actions.CHANGE_SEARCH_QUERY, fetchMovieResults);

@@ -1,29 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { List, Map } from 'immutable';
 
+import { isInGenre, isInDecade } from '../utils';
 import { changeSearchQuery, getApiConfiguration } from '../redux/actions';
 
 import SearchField from './SearchField';
 import SearchFilters from './SearchFilters';
 import CardList from './CardList';
-
-export function isInGenre(movie, genreFilterValue, genres) {
-  const movieGenres =
-    movie
-      .get('genre_ids', List())
-      .map(genreId =>
-        genres
-          .find(genreObj => genreObj.get('id') === genreId, Map())
-          .get('name')
-      )
-  return genreFilterValue ? (movieGenres.includes(genreFilterValue)) : true;
-}
-
-export function isInDecade(movie, decadeFilterValue) {
-  const releaseDecade = movie.get('release_date', false).slice(0, 3);
-  return decadeFilterValue ? (releaseDecade === decadeFilterValue) : true;
-}
 
 
 export const MovieSearch = props => {

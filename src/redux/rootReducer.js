@@ -1,5 +1,6 @@
-import { fromJS, List, Map } from 'immutable';
+import { fromJS } from 'immutable';
 
+import { reduceSearchResults } from '../utils';
 import * as actions from './actions';
 import * as sagaActions from './sagas';
 
@@ -26,29 +27,23 @@ export default function(state = initialState, action) {
       return state.set('query', action.payload.query);
 
     case sagaActions.GET_MOVIES.SUCCESS:
-      const results =
-        fromJS(action.payload.results)
-          .filter(movie => movie.get('overview') && movie.get('backdrop_path'));
+      return state
+        .mergeIn(['responses', 'movies'], reduceSearchResults(action.payload, state.get('genres')));
 
-      const decades =
-        results
-          .map(movie => movie.get('release_date', '').slice(0, 3))
-          .sort()
-          .toOrderedSet();
+    case sagaActions.GET_FURTHER_MOVIES.SUCCESS:
+      const oldResults = state.getIn(['responses', 'movies', 'results']);
+      const oldDecades = state.getIn(['responses', 'movies', 'decades']);
+      const oldResultGenres = state.getIn(['responses', 'movies', 'resultGenres']);
 
-      const genres = state.get('genres', List());
+      const  {
+        results: newResults,
+        decades: newDecades,
+        resultGenres: newResultGenres
+      } = reduceSearchResults(action.payload, state.get('genres'));
 
-      const resultGenres =
-        results
-          .map(movie => movie.get('genre_ids', List()))
-          .flatten()
-          .toOrderedSet()
-          .map(genreId =>
-            genres
-              .find(genreObj => genreObj.get('id') === genreId, Map())
-              .get('name')
-          )
-          .sort()
+      const results = oldResults.concat(newResults);
+      const decades = oldDecades.union(newDecades);
+      const resultGenres = oldResultGenres.union(newResultGenres);
 
       return state
         .mergeIn(['responses', 'movies'], { results, decades, resultGenres });
