@@ -20,3 +20,8 @@ export const CHANGE_DECADE_FILTER = 'CHANGE_DECADE_FILTER';
 export function changeDecadeFilter(value) {
   return { type: CHANGE_DECADE_FILTER, payload: { value } };
 }
+
+export const CHANGE_GENRE_FILTER = 'CHANGE_GENRE_FILTER';
+export function changeGenreFilter(value) {
+  return { type: CHANGE_GENRE_FILTER, payload: { value } };
+}

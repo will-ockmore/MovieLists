@@ -4,7 +4,7 @@ import { Map } from 'immutable';
 
 import { searchMovies } from '../api/search';
 import { getMovie } from '../api/items';
-import { getConfig } from '../api/config';
+import { getConfig, getGenres } from '../api/config';
 
 import * as actions from './actions';
 
@@ -43,19 +43,28 @@ function* searchForMovies() {
 
 // worker Saga: will be fired on actions
 export const GET_BACKDROP_URL = makeRequestActionSet('GET_BACKDROP_URL');
+export const GET_GENRES = makeRequestActionSet('GET_GENRES');
 
-function* fetchBackdropUrl(action) {
- try {
-  const response = yield call(getConfig);
+function* fetchConfig(action) {
+  try {
+    const response = yield call(getConfig);
 
-  yield put({type: GET_BACKDROP_URL.SUCCESS, payload: response.images});
+    yield put({type: GET_BACKDROP_URL.SUCCESS, payload: response.images});
   } catch (e) {
     yield put({type: GET_BACKDROP_URL.FAILURE, payload: e.message});
   }
+
+  try {
+    const response = yield call(getGenres);
+
+    yield put({type: GET_GENRES.SUCCESS, payload: response.genres});
+  } catch(e) {
+    yield put({type: GET_GENRES.FAILURE, payload: e.message});
+  }
 }
 
-function* getBackdropUrl() {
-  yield* takeEvery(actions.GET_API_CONFIG, fetchBackdropUrl);
+function* getConfiguration() {
+  yield* takeEvery(actions.GET_API_CONFIG, fetchConfig);
 }
 
 // worker Saga: will be fired on actions
@@ -79,7 +88,7 @@ function* getMovieDetails() {
 export default function* rootSaga() {
   yield [
     searchForMovies(),
-    getBackdropUrl(),
+    getConfiguration(),
     getMovieDetails(),
   ]
 };
