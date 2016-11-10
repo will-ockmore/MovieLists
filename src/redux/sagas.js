@@ -37,8 +37,9 @@ function* fetchMovieResults(action) {
       yield put({type: GET_MOVIES.FAILURE, payload: e.message});
     }
 
-    yield delay(300);
+    yield delay(500);
 
+    // get more results from later pages once the user stays on a result set
     try {
       let furtherResponse = {results: []};
       for(let i of Range(2, 8)) {
