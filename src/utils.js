@@ -7,38 +7,28 @@ export function filterIncompleteResults(results) {
 }
 
 export function findGenreName(genreId, genres) {
-  // console.log(genres.toJS(), genreId);
   const obj = genres
     .find(genreObj => genreObj.get('id') === genreId, null, Map())
-  console.log(obj.toJS());
   const name = obj.get('name');
   return name;
 }
 
 export function getGenresAndDecades(results, genres) {
-  try {
-    const decades =
-      results
-        .map(movie => movie.get('release_date', '').slice(0, 3))
-        .sort()
-        .toOrderedSet();
+  const decades =
+    results
+      .map(movie => movie.get('release_date', '').slice(0, 3))
+      .sort()
+      .toOrderedSet();
 
-    const resultGenres1 =
-      results
-        .map(movie => movie.get('genre_ids', List()))
-        .flatten()
-        .toOrderedSet();
+  const resultGenres =
+    results
+      .map(movie => movie.get('genre_ids', List()))
+      .flatten()
+      .toOrderedSet()
+      .map(genreId => findGenreName(genreId, genres))
+      .sort();
 
-    const resultGenres =
-      resultGenres1
-        .map(genreId => findGenreName(genreId, genres))
-        .sort();
-
-    return { decades, resultGenres };
-  } catch (e) {
-    console.log(e, results.toJS());
-  }
-
+  return { decades, resultGenres };
 }
 
 export function reduceSearchResults(_results, genres) {
@@ -52,11 +42,8 @@ export function isInGenre(movie, genreFilterValue, genres) {
   const movieGenres =
     movie
       .get('genre_ids', List())
-      .map(genreId =>
-        genres
-          .find(genreObj => genreObj.get('id') === genreId, Map())
-          .get('name')
-      )
+      .map(genreId => findGenreName(genreId, genres))
+
   return genreFilterValue ? movieGenres.includes(genreFilterValue) : true;
 }
 

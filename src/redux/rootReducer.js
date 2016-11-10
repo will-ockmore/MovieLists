@@ -42,8 +42,14 @@ export default function(state = initialState, action) {
       } = reduceSearchResults(action.payload, state.get('genres'));
 
       const results = oldResults.concat(newResults);
-      const decades = oldDecades.union(newDecades);
-      const resultGenres = oldResultGenres.union(newResultGenres);
+      const decades =
+        oldDecades
+          .union(newDecades)
+          .sort();
+      const resultGenres =
+        oldResultGenres
+          .union(newResultGenres)
+          .sort();
 
       return state
         .mergeIn(['responses', 'movies'], { results, decades, resultGenres });

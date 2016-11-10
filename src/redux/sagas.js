@@ -42,7 +42,6 @@ function* fetchMovieResults(action) {
     try {
       let furtherResponse = {results: []};
       for(let i of Range(2, 8)) {
-        console.log(i);
         furtherResponse = yield call(searchMovies, action.payload.query, { page: i });
 
         yield put({type: GET_FURTHER_MOVIES.SUCCESS, payload: furtherResponse.results});
