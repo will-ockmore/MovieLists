@@ -6,6 +6,8 @@ export function changeSearchQuery(query, noDelay) {
   };
 }
 
+export const CLEAR_RESULTS = 'CLEAR_RESULTS';
+
 export const GET_API_CONFIG = 'GET_API_CONFIG';
 export function getApiConfiguration() {
   return { type: GET_API_CONFIG };

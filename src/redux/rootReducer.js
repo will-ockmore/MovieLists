@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 
 import { reduceSearchResults } from '../utils';
 import * as actions from './actions';
@@ -26,6 +26,9 @@ export default function(state = initialState, action) {
     case actions.CHANGE_SEARCH_QUERY:
       return state.set('query', action.payload.query);
 
+    case actions.CLEAR_RESULTS:
+      return state.setIn(['responses', 'movies', 'results'], List());
+
     case sagaActions.GET_MOVIES.SUCCESS:
       return state
         .mergeIn(['responses', 'movies'], reduceSearchResults(action.payload, state.get('genres')));
@@ -42,10 +45,12 @@ export default function(state = initialState, action) {
       } = reduceSearchResults(action.payload, state.get('genres'));
 
       const results = oldResults.concat(newResults);
+
       const decades =
         oldDecades
           .union(newDecades)
           .sort();
+
       const resultGenres =
         oldResultGenres
           .union(newResultGenres)

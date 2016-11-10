@@ -27,7 +27,7 @@ function* fetchMovieResults(action) {
   if (query) {
    try {
     if (!noDelay) {
-      yield delay(200);
+      yield delay(400);
     }
     const response = yield call(searchMovies, action.payload.query);
 
@@ -52,6 +52,9 @@ function* fetchMovieResults(action) {
       yield put({type: GET_FURTHER_MOVIES.FAILURE, payload: e.message})
     }
 
+  } else {
+    yield put({type: actions.CLEAR_RESULTS});
+    yield delay(600);
   }
 }
 
