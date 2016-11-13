@@ -1,6 +1,6 @@
 import { takeLatest, takeEvery, delay } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
-import { Map, Range } from 'immutable';
+import { Map } from 'immutable';
 
 import { searchMovies } from '../api/search';
 import { getMovie } from '../api/items';
@@ -42,7 +42,7 @@ function* fetchMovieResults(action) {
     // get more results from later pages once the user stays on a result set
     try {
       let furtherResponse = {results: []};
-      for(let i of Range(2, 8)) {
+      for(let i = 2; i < 9; i++) {
         furtherResponse = yield call(searchMovies, action.payload.query, { page: i });
 
         yield put({type: GET_FURTHER_MOVIES.SUCCESS, payload: furtherResponse.results});

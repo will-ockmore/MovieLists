@@ -7,7 +7,7 @@ import { getApiConfiguration } from '../redux/actions';
 
 import './App.css';
 
-class App extends Component {
+export class App extends Component {
 
   componentWillMount() {
     this.props.getApiConfiguration();

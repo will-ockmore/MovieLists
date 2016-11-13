@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { ROOT_ROUTE } from '../index.js';
 
 
-class ResultCard extends Component {
+export class ResultCard extends Component {
   render() {
     const { movie, smallBackdropUrl } = this.props
     const { overview, backdrop_path, title, release_date, id } = movie.toObject();
