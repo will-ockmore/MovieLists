@@ -6,6 +6,20 @@ import { loadMovieDetails } from '../redux/actions';
 import Loading from './Loading';
 
 
+export const PropertyRow = ({ propertyTitle, children }) =>
+  <div className="fl-row">
+    <div className="fl-1">
+      <label className="property-title">
+        <strong>{propertyTitle}</strong>
+      </label>
+    </div>
+    <div className="fl-1">
+      <label className="property-value">
+        {children}
+      </label>
+    </div>
+  </div>;
+
 class MovieDetails extends Component {
 
   componentWillMount() {
@@ -48,69 +62,36 @@ class MovieDetails extends Component {
         <div className="t-left mb-2">{overview}</div>
 
         {hasMultipleVotes &&
-          <div className="fl-row">
-            <div className="fl-1">
-              <label className="property-title">
-                <strong>Rating:</strong>
-              </label>
-            </div>
-            <div className="fl-1">
-              <label className="property-value">
-                <strong>{vote_average}</strong>/10 &nbsp;<small>(from {vote_count} votes)</small>
-              </label>
-            </div>
-          </div>
+          <PropertyRow propertyTitle="Rating:" >
+            <strong>{vote_average}</strong>/10 &nbsp;<small>(from {vote_count} votes)</small>
+          </PropertyRow>
         }
 
         {runtime &&
-          <div className="fl-row">
-            <div className="fl-1">
-              <label className="property-title"><strong>Runtime</strong>:</label>
-            </div>
-            <div className="fl-1">
-              <label className="property-value">{runtime} mins</label>
-            </div>
-          </div>
+          <PropertyRow propertyTitle="Runtime:" >
+            {runtime} mins
+          </PropertyRow>
         }
 
         {release_date &&
-          <div className="fl-row">
-            <div className="fl-1">
-              <label className="property-title"><strong>Release date</strong>:</label>
-            </div>
-            <div className="fl-1">
-              <label className="property-value">{release_date}</label>
-            </div>
-          </div>
+          <PropertyRow propertyTitle="Release date:" >
+            {release_date}
+          </PropertyRow>
         }
 
         <h2>Cast & crew</h2>
 
        {crew && crew.slice(0, 5).map(crewmember =>
-          <div key={crewmember.get('credit_id')} className="fl-row">
-            <div className="fl-1">
-              <label className="property-title">
-                <strong>{crewmember.get('job')}</strong>
-              </label>
-            </div>
-            <div className="fl-1">
-              <label className="property-value">{crewmember.get('name')}</label>
-            </div>
-          </div>
+          <PropertyRow key={crewmember.get('credit_id')} propertyTitle={crewmember.get('job')} >
+            {crewmember.get('name')}
+          </PropertyRow>
         )}
 
        <div className="mt-2">
          {cast && cast.slice(0, 15).map(castmember =>
-            <div key={castmember.get('cast_id')} className="fl-row">
-              <div className="fl-1">
-                <label className="property-title">
-                  <strong>{castmember.get('character')}</strong>
-                </label>
-              </div>
-              <div className="fl-1">
-                <label className="property-value">{castmember.get('name')}</label>
-              </div>
-            </div>
+            <PropertyRow key={castmember.get('cast_id')} propertyTitle={castmember.get('character')} >
+               {castmember.get('name')}
+            </PropertyRow>
           )}
        </div>
       </div>

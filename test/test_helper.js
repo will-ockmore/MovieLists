@@ -3,7 +3,6 @@ import jsdom from 'jsdom';
 process.env.NODE_ENV = 'test';
 process.env.PUBLIC_URL = '';
 
-jest.mock('react-router');
 
 const doc = jsdom.jsdom('<!doctype html><html><body><div id="root"></div></body></html>');
 const win = doc.defaultView;
@@ -18,3 +17,4 @@ Object.keys(window).forEach((key) => {
   }
 });
 
+jest.mock('react-router');
