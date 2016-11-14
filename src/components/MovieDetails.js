@@ -20,7 +20,7 @@ export const PropertyRow = ({ propertyTitle, children }) =>
     </div>
   </div>;
 
-class MovieDetails extends Component {
+export class MovieDetails extends Component {
 
   componentWillMount() {
     const { loadDetails, id } = this.props;
