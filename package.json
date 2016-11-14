@@ -67,6 +67,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --setupTestFrameworkScriptFile ./test/test_helper.js",
+    "coverage": "npm run test -- --coverage",
     "deploy": "gh-pages -d build"
   },
   "jest": {

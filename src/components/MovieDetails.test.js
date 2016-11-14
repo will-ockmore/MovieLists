@@ -6,7 +6,7 @@ import { MOVIE_DETAILS } from '../../test/testFixtures';
 
 import { MovieDetails, PropertyRow } from './MovieDetails';
 
-describe('MovieDetails', () => {
+describe('MovieDetails snapshots', () => {
 
   jest.mock('react-dom');
 

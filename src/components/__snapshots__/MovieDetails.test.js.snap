@@ -1,4 +1,4 @@
-exports[`MovieDetails renders PropertyRow 1`] = `
+exports[`MovieDetails snapshots renders PropertyRow 1`] = `
 <div
   className="fl-row">
   <div
@@ -22,7 +22,7 @@ exports[`MovieDetails renders PropertyRow 1`] = `
 </div>
 `;
 
-exports[`MovieDetails renders the full tree 1`] = `
+exports[`MovieDetails snapshots renders the full tree 1`] = `
 <div
   className="movie-details">
   <img
