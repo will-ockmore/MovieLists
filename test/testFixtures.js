@@ -48,6 +48,7 @@ export const CREDITS = fromJS({
 export const MOVIE_DETAILS = Map({
   id: 123,
   title: 'The title',
+  original_title: 'the original title',
   tagline: 'sick tagline bro',
   vote_average: 9.9,
   vote_count: 987,

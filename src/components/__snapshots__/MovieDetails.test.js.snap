@@ -1,4 +1,9 @@
-exports[`MovieDetails snapshots renders PropertyRow 1`] = `
+exports[`MovieDetails renders Loading if request is pending 1`] = `
+<div
+  className="single6" />
+`;
+
+exports[`MovieDetails renders PropertyRow 1`] = `
 <div
   className="fl-row">
   <div
@@ -22,7 +27,7 @@ exports[`MovieDetails snapshots renders PropertyRow 1`] = `
 </div>
 `;
 
-exports[`MovieDetails snapshots renders the full tree 1`] = `
+exports[`MovieDetails renders the full tree 1`] = `
 <div
   className="movie-details">
   <img
@@ -33,6 +38,9 @@ exports[`MovieDetails snapshots renders the full tree 1`] = `
     className="mv-title">
     The title
   </h1>
+  <h2>
+     (the original title)
+  </h2>
   <h4
     className="tagline">
     “
