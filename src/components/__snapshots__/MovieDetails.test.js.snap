@@ -1,0 +1,223 @@
+exports[`MovieDetails renders Loading if request is pending 1`] = `
+<div
+  className="single6" />
+`;
+
+exports[`MovieDetails renders PropertyRow 1`] = `
+<div
+  className="fl-row">
+  <div
+    className="fl-1">
+    <label
+      className="property-title">
+      <strong>
+        The title
+      </strong>
+    </label>
+  </div>
+  <div
+    className="fl-1">
+    <label
+      className="property-value">
+      <span>
+        The children
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`MovieDetails renders the full tree 1`] = `
+<div
+  className="movie-details">
+  <img
+    alt="poster"
+    className="splash"
+    src="undefinedgood ruck kid" />
+  <h1
+    className="mv-title">
+    The title
+  </h1>
+  <h2>
+     (the original title)
+  </h2>
+  <h4
+    className="tagline">
+    “
+    <em>
+      sick tagline bro
+    </em>
+     ”
+  </h4>
+  <div
+    className="t-left mb-2">
+    Some overview of the movie
+  </div>
+  <div
+    className="fl-row">
+    <div
+      className="fl-1">
+      <label
+        className="property-title">
+        <strong>
+          Rating:
+        </strong>
+      </label>
+    </div>
+    <div
+      className="fl-1">
+      <label
+        className="property-value">
+        <strong>
+          9.9
+        </strong>
+        /10  
+        <small>
+          (from 
+          987
+           votes)
+        </small>
+      </label>
+    </div>
+  </div>
+  <div
+    className="fl-row">
+    <div
+      className="fl-1">
+      <label
+        className="property-title">
+        <strong>
+          Release date:
+        </strong>
+      </label>
+    </div>
+    <div
+      className="fl-1">
+      <label
+        className="property-value">
+        1666-6-6
+      </label>
+    </div>
+  </div>
+  <h2>
+    Cast & crew
+  </h2>
+  <div
+    className="fl-row">
+    <div
+      className="fl-1">
+      <label
+        className="property-title">
+        <strong>
+          Camera
+        </strong>
+      </label>
+    </div>
+    <div
+      className="fl-1">
+      <label
+        className="property-value">
+        Chuck Norris
+      </label>
+    </div>
+  </div>
+  <div
+    className="fl-row">
+    <div
+      className="fl-1">
+      <label
+        className="property-title">
+        <strong>
+          Lights
+        </strong>
+      </label>
+    </div>
+    <div
+      className="fl-1">
+      <label
+        className="property-value">
+        Chuck Norris
+      </label>
+    </div>
+  </div>
+  <div
+    className="fl-row">
+    <div
+      className="fl-1">
+      <label
+        className="property-title">
+        <strong>
+          Action
+        </strong>
+      </label>
+    </div>
+    <div
+      className="fl-1">
+      <label
+        className="property-value">
+        Chuck Norris
+      </label>
+    </div>
+  </div>
+  <div
+    className="mt-2">
+    <div
+      className="fl-row">
+      <div
+        className="fl-1">
+        <label
+          className="property-title">
+          <strong>
+            Sauron
+          </strong>
+        </label>
+      </div>
+      <div
+        className="fl-1">
+        <label
+          className="property-value">
+          The big boy
+        </label>
+      </div>
+    </div>
+    <div
+      className="fl-row">
+      <div
+        className="fl-1">
+        <label
+          className="property-title">
+          <strong>
+            Gandalf
+          </strong>
+        </label>
+      </div>
+      <div
+        className="fl-1">
+        <label
+          className="property-value">
+          Ian McKellen
+        </label>
+      </div>
+    </div>
+    <div
+      className="fl-row">
+      <div
+        className="fl-1">
+        <label
+          className="property-title">
+          <strong>
+            Frodo
+          </strong>
+        </label>
+      </div>
+      <div
+        className="fl-1">
+        <label
+          className="property-value">
+          Elijah Wood
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+`;

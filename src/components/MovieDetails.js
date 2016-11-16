@@ -20,7 +20,7 @@ export const PropertyRow = ({ propertyTitle, children }) =>
     </div>
   </div>;
 
-class MovieDetails extends Component {
+export class MovieDetails extends Component {
 
   componentWillMount() {
     const { loadDetails, id } = this.props;
@@ -57,8 +57,10 @@ class MovieDetails extends Component {
     return (
       <div className="movie-details">
         <img className="splash" src={largeBackdropUrl + backdrop_path} alt="poster" />
-        <h1 className="mv-title">{title}{original_title && original_title !== title && ` (${original_title})`}</h1>
+        <h1 className="mv-title">{title}</h1>
+        <h2>{original_title && original_title !== title && ` (${original_title})`}</h2>
         {tagline && <h4 className="tagline">&ldquo;<em>{tagline}</em> &rdquo;</h4>}
+
         <div className="t-left mb-2">{overview}</div>
 
         {hasMultipleVotes &&
@@ -67,7 +69,7 @@ class MovieDetails extends Component {
           </PropertyRow>
         }
 
-        {runtime &&
+        {!!runtime &&
           <PropertyRow propertyTitle="Runtime:" >
             {runtime} mins
           </PropertyRow>
@@ -108,4 +110,9 @@ export function mapStateToProps(state, props) {
   }
 }
 
-export default connect(mapStateToProps, { loadDetails: loadMovieDetails })(MovieDetails);
+export default connect(
+  mapStateToProps,
+  {
+    loadDetails: loadMovieDetails
+  }
+)(MovieDetails);

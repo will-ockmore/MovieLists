@@ -1,5 +1,5 @@
-import { takeLatest, takeEvery, delay } from 'redux-saga'
-import { call, put } from 'redux-saga/effects'
+import { takeLatest, takeEvery, delay } from 'redux-saga';
+import { call, put } from 'redux-saga/effects';
 import { Map } from 'immutable';
 
 import { searchMovies } from '../api/search';
@@ -21,7 +21,7 @@ export const GET_MOVIES = makeRequestActionSet('GET_MOVIES');
 export const GET_FURTHER_MOVIES = makeRequestActionSet('GET_FURTHER_MOVIES');
 
 // worker Saga: will be fired on actions
-function* fetchMovieResults(action) {
+export function* fetchMovieResults(action) {
   const { query, noDelay } = action.payload;
 
   if (query) {
@@ -29,9 +29,9 @@ function* fetchMovieResults(action) {
     if (!noDelay) {
       yield delay(400);
     }
-    const response = yield call(searchMovies, action.payload.query);
+      const response = yield call(searchMovies, action.payload.query);
 
-    yield put({type: GET_MOVIES.SUCCESS, payload: response.results});
+      yield put({type: GET_MOVIES.SUCCESS, payload: response.results});
 
     } catch (e) {
       yield put({type: GET_MOVIES.FAILURE, payload: e.message});

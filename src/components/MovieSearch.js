@@ -10,7 +10,11 @@ import CardList from './CardList';
 
 
 export const MovieSearch = props => {
-  const { updateQuery, query, results, smallBackdropUrl, decadeFilterValue, genreFilterValue, genres } = props;
+  const {
+    updateQuery, query, results,
+    smallBackdropUrl, decadeFilterValue,
+    genreFilterValue, genres
+  } = props;
 
   const displayedResults =
     results
