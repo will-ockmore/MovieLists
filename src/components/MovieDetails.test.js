@@ -68,7 +68,7 @@ describe('MovieDetails', () => {
 
   it('mapStateToProps', () => {
     const initialState = fromJS({
-      responses:{
+      responses: {
         movieDetails: 'details yo'
       },
       imageUrls: {

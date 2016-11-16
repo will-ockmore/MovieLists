@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+import { Map, OrderedSet, fromJS } from 'immutable';
 
 export const MOVIE = Map({
   id: 123,
@@ -57,4 +57,18 @@ export const MOVIE_DETAILS = Map({
   backdrop_path: 'good ruck kid',
   credits: CREDITS
 });
+
+export const DECADES = OrderedSet([
+  '166',
+  '167',
+  '168',
+  '169'
+]);
+
+export const GENRES = OrderedSet([
+  'Action',
+  'Comedy',
+  'Horror',
+  'Thriller'
+]);
 

@@ -7,8 +7,10 @@ export function filterIncompleteResults(results) {
 }
 
 export function findGenreName(genreId, genres) {
-  const obj = genres
-    .find(genreObj => genreObj.get('id') === genreId, null, Map())
+  const obj =
+    genres
+      .find(genreObj => genreObj.get('id') === genreId, null, Map())
+
   const name = obj.get('name');
   return name;
 }
@@ -50,5 +52,45 @@ export function isInGenre(movie, genreFilterValue, genres) {
 export function isInDecade(movie, decadeFilterValue) {
   const releaseDecade = movie.get('release_date', false).slice(0, 3);
   return decadeFilterValue ? (releaseDecade === decadeFilterValue) : true;
+}
+
+export const isObject =
+  maybeObject => maybeObject !== null && typeof maybeObject === 'object';
+
+export function stringifyValues(object) {
+  return Object
+    .keys(object)
+    .reduce((prev, current) => {
+      if (isObject(object[current])) {
+        prev[current] = stringifyValues(object[current]);
+      } else {
+        prev[current] = object[current] && object[current].toString();
+      }
+      return prev;
+    }, {});
+}
+
+export function getArgs(sagaObject) {
+  const args =
+    Object
+      .keys(sagaObject)
+      .reduce((prev, current) => {
+        if (current === 'args') {
+          prev.concat(Object.values(sagaObject[current]));
+        }
+        return prev;
+      }, []);
+
+  const type =
+    Object
+      .keys(sagaObject)
+      .reduce((prev, current) => {
+        if (current.startsWith('@@redux-saga')) {
+          return current;
+        }
+        return prev;
+      }, '');
+
+    return { type, args };
 }
 
