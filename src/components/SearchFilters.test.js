@@ -1,9 +1,8 @@
 import React from 'react';
-import { List, Range, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import { mount } from 'enzyme';
 
-import { MOVIE, DECADES, GENRES } from '../../test/testFixtures';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import { DECADES, GENRES } from '../../test/testFixtures';
 
 import { SearchFilters, mapStateToProps } from './SearchFilters';
 

@@ -28,5 +28,4 @@ export class ResultCard extends Component {
   }
 }
 
-
 export default ResultCard;

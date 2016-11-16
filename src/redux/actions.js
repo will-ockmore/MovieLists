@@ -1,9 +1,6 @@
 export const CHANGE_SEARCH_QUERY = 'CHANGE_SEARCH_QUERY';
 export function changeSearchQuery(query, noDelay) {
-  return {
-    type: CHANGE_SEARCH_QUERY,
-    payload: { query, noDelay }
-  };
+  return { type: CHANGE_SEARCH_QUERY, payload: { query, noDelay } };
 }
 
 export const CLEAR_RESULTS = 'CLEAR_RESULTS';

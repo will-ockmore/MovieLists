@@ -1,10 +1,7 @@
 import React from 'react';
-import { List, Range, fromJS } from 'immutable';
 import { mount } from 'enzyme';
 
-import { MOVIE } from '../../test/testFixtures';
-
-import { SearchField } from './SearchField';
+import SearchField from './SearchField';
 
 
 describe('SearchField', () => {

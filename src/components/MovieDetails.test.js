@@ -69,7 +69,7 @@ describe('MovieDetails', () => {
   it('mapStateToProps', () => {
     const initialState = fromJS({
       responses: {
-        movieDetails: 'details yo'
+        movieDetails: 'details'
       },
       imageUrls: {
         largeBackdropUrl: 'www.cat.com'
@@ -79,7 +79,7 @@ describe('MovieDetails', () => {
     expect(
       mapStateToProps(initialState, {params: {id: 123}})
     ).toEqual(
-      {id: 123, details: 'details yo', largeBackdropUrl: 'www.cat.com'}
+      {id: 123, details: 'details', largeBackdropUrl: 'www.cat.com'}
     );
   });
 });
