@@ -25,7 +25,7 @@ describe('sagas', () => {
     );
   });
 
-  it('fetchMovieResults', () => {
+  xit('fetchMovieResults', () => {
     jest.useFakeTimers();
 
     const { searchMovies } = require('../api/search');
@@ -36,34 +36,34 @@ describe('sagas', () => {
         .fetchMovieResults({type: 'blah', payload: {query: 'lolol'}});
     console.log({done: false, value: call(searchMovies, 'lolol', { page: 2})}, getArgs({done: false, value: delay(400)}));
 
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: delay(400)}));
+    expect(generator.next()).toEqual({done: false, value: delay(400)});
     jest.runAllTimers();
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: call(searchMovies, 'lolol')}));
-    expect(getArgs(generator.next()))
-      .toEqual(getArgs({done: false, value: put({type: sagas.GET_MOVIES.SUCCESS, payload: 'the results'})}));
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: delay(500)}));
+    expect(generator.next()).toEqual({done: false, value: call(searchMovies, 'lolol')});
+    expect(generator.next())
+      .toEqual({done: false, value: put({type: sagas.GET_MOVIES.SUCCESS, payload: 'the results'})});
+    expect(generator.next()).toEqual({done: false, value: delay(500)});
     jest.runAllTimers();
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: call(searchMovies, 'lolol', { page: 2})}));
-    expect(getArgs(generator.next()))
-      .toEqual(getArgs({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})}));
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: call(searchMovies, 'lolol', { page: 3})}));
-    expect(getArgs(generator.next()))
-      .toEqual(getArgs({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})}));
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: call(searchMovies, 'lolol', { page: 4})}));
-    expect(getArgs(generator.next()))
-      .toEqual(getArgs({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})}));
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: call(searchMovies, 'lolol', { page: 5})}));
-    expect(getArgs(generator.next()))
-      .toEqual(getArgs({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})}));
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: call(searchMovies, 'lolol', { page: 6})}));
-    expect(getArgs(generator.next()))
-      .toEqual(getArgs({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})}));
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: call(searchMovies, 'lolol', { page: 7})}));
-    expect(getArgs(generator.next()))
-      .toEqual(getArgs({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})}));
-    expect(getArgs(generator.next())).toEqual(getArgs({done: false, value: call(searchMovies, 'lolol', { page: 8})}));
-    expect(getArgs(generator.next()))
-      .toEqual(getArgs({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})}));
+    expect(generator.next()).toEqual({done: false, value: call(searchMovies, 'lolol', { page: 2})});
+    expect(generator.next())
+      .toEqual({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})});
+    expect(generator.next()).toEqual({done: false, value: call(searchMovies, 'lolol', { page: 3})});
+    expect(generator.next())
+      .toEqual({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})});
+    expect(generator.next()).toEqual({done: false, value: call(searchMovies, 'lolol', { page: 4})});
+    expect(generator.next())
+      .toEqual({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})});
+    expect(generator.next()).toEqual({done: false, value: call(searchMovies, 'lolol', { page: 5})});
+    expect(generator.next())
+      .toEqual({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})});
+    expect(generator.next()).toEqual({done: false, value: call(searchMovies, 'lolol', { page: 6})});
+    expect(generator.next())
+      .toEqual({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})});
+    expect(generator.next()).toEqual({done: false, value: call(searchMovies, 'lolol', { page: 7})});
+    expect(generator.next())
+      .toEqual({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})});
+    expect(generator.next()).toEqual({done: false, value: call(searchMovies, 'lolol', { page: 8})});
+    expect(generator.next())
+      .toEqual({done: false, value: put({type: sagas.GET_FURTHER_MOVIES.SUCCESS, payload: 'the results'})});
   });
 
 });
