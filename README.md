@@ -1,6 +1,6 @@
 ### MovieLists
 
-Material design web app for finding a movie to watch.
+Material design / mobile first web app for finding a movie to watch.
 
 Built using the great API provided by [TheMovieDb](https://developers.themoviedb.org/3/getting-started/introduction).
 
