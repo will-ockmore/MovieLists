@@ -64,6 +64,7 @@
     "redux-saga": "=0.12.1"
   },
   "scripts": {
+    "postinstall": "npm run build",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
