@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "http://will-ockmore.github.io/MovieLists/",
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
     "babel-eslint": "7.0.0",
@@ -50,9 +50,7 @@
     "webpack": "1.13.2",
     "webpack-dev-server": "1.16.2",
     "webpack-manifest-plugin": "1.1.0",
-    "whatwg-fetch": "1.0.0"
-  },
-  "dependencies": {
+    "whatwg-fetch": "1.0.0",
     "gh-pages": "=0.11.0",
     "immutable": "=3.8.1",
     "react": "=15.3.2",
@@ -62,6 +60,9 @@
     "react-router": "=3.0.0",
     "redux": "=3.6.0",
     "redux-saga": "=0.12.1"
+  },
+  "engines": {
+    "node": "6.7.0"
   },
   "scripts": {
     "postinstall": "npm run build",
