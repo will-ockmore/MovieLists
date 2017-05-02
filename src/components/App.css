@@ -249,6 +249,7 @@ select:focus {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .card {
   background: #fff;
   flex: 1;
