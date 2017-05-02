@@ -7,7 +7,7 @@ import { getApiConfiguration } from '../redux/actions';
 
 import './App.css';
 
-export class App extends Component {
+export class Main extends Component {
 
   componentWillMount() {
     this.props.getApiConfiguration();
@@ -31,4 +31,4 @@ export class App extends Component {
   }
 }
 
-export default connect(null, { getApiConfiguration })(App);
+export default connect(null, { getApiConfiguration })(Main);

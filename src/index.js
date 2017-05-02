@@ -1,24 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import { Provider } from 'react-redux';
 
-import App from './components/App';
-import MovieSearch from './components/MovieSearch';
-import MovieDetails from './components/MovieDetails';
 import store from './redux/store';
-import './index.css';
 
-export const ROOT_ROUTE = process.env.NODE_ENV === 'development' ? '/' : '/MovieLists/';
+export const ROOT_ROUTE = '/';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path={ROOT_ROUTE} component={App}>
-        <IndexRoute component={MovieSearch} />
-        <Route path={`${ROOT_ROUTE}:id`} component={MovieDetails} />
-      </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('root')
-);
+
+const render = () => {
+  const App = require('./App').default;
+
+  ReactDOM.render(
+    <App store={store} />,
+    document.getElementById('root')
+  );
+};
+
+if (module.hot) {
+  // Support hot reloading of components
+  module.hot.accept('./App', () => {
+    render();
+  });
+}
+
+render();
