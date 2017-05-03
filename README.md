@@ -4,7 +4,7 @@ Material design / mobile first web app for finding a movie to watch.
 
 Built using the great API provided by [TheMovieDb](https://developers.themoviedb.org/3/getting-started/introduction).
 
-[See it in action!](http://www.willockmore.com/MovieLists/)
+[See it in action!](http://movielist.willockmore.com/)
 
 Uses React with redux and redux-saga - tests with the new jest, including snapshots.
 

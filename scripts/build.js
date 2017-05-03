@@ -21,7 +21,7 @@ var recursive = require('recursive-readdir');
 var stripAnsi = require('strip-ansi');
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+if (!checkRequiredFiles([paths.appIndexHtmlTemplate, paths.appIndexJs])) {
   process.exit(1);
 }
 
@@ -29,7 +29,7 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 // Output: /static/js/main.js
 function removeFileNameHash(fileName) {
   return fileName
-    .replace(paths.appBuild, '')
+    .replace(paths.buildDir, '')
     .replace(/\/?(.*)(\.\w+)(\.js|\.css)/, (match, p1, p2, p3) => p1 + p3);
 }
 
@@ -52,7 +52,7 @@ function getDifferenceLabel(currentSize, previousSize) {
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
-recursive(paths.appBuild, (err, fileNames) => {
+recursive(paths.buildDir, (err, fileNames) => {
   var previousSizeMap = (fileNames || [])
     .filter(fileName => /\.(js|css)$/.test(fileName))
     .reduce((memo, fileName) => {
@@ -64,7 +64,7 @@ recursive(paths.appBuild, (err, fileNames) => {
 
   // Remove all content but keep the directory so that
   // if you're in it, you don't end up in Trash
-  rimrafSync(paths.appBuild + '/*');
+  rimrafSync(paths.buildDir + '/*');
 
   // Start the webpack build
   build(previousSizeMap);
@@ -78,7 +78,7 @@ function printFileSizes(stats, previousSizeMap) {
   var assets = stats.toJson().assets
     .filter(asset => /\.(js|css)$/.test(asset.name))
     .map(asset => {
-      var fileContents = fs.readFileSync(paths.appBuild + '/' + asset.name);
+      var fileContents = fs.readFileSync(paths.buildDir + '/' + asset.name);
       var size = gzipSize(fileContents);
       var previousSize = previousSizeMap[removeFileNameHash(asset.name)];
       var difference = getDifferenceLabel(size, previousSize);
@@ -198,8 +198,8 @@ function build(previousSizeMap) {
 }
 
 function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
+  fs.copySync(paths.appPublic, paths.buildDir, {
     dereference: true,
-    filter: file => file !== paths.appHtml
+    filter: file => file !== paths.appIndexHtmlTemplate
   });
 }

@@ -23,6 +23,7 @@ module.exports = {
   nodeModules: resolveApp('node_modules'),
   buildDir: resolveApp('build'),
   appPublic: resolveApp('public'),
+  appPackageJson: resolveApp('package.json'),
 
   // ports and addresses
   devServerPort: webpackDevServerPort,
