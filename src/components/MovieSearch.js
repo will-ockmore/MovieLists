@@ -8,18 +8,20 @@ import SearchField from './SearchField';
 import SearchFilters from './SearchFilters';
 import CardList from './CardList';
 
-
 export const MovieSearch = props => {
   const {
-    updateQuery, query, results,
-    smallBackdropUrl, decadeFilterValue,
-    genreFilterValue, genres
+    updateQuery,
+    query,
+    results,
+    smallBackdropUrl,
+    decadeFilterValue,
+    genreFilterValue,
+    genres,
   } = props;
 
-  const displayedResults =
-    results
-      .filter(movie => isInDecade(movie, decadeFilterValue))
-      .filter(movie => isInGenre(movie, genreFilterValue, genres));
+  const displayedResults = results
+    .filter(movie => isInDecade(movie, decadeFilterValue))
+    .filter(movie => isInGenre(movie, genreFilterValue, genres));
 
   return (
     <div>
@@ -27,10 +29,13 @@ export const MovieSearch = props => {
       <hr className="search-break" />
       <SearchField query={query} updateQuery={updateQuery} />
       <SearchFilters />
-      <CardList results={displayedResults} smallBackdropUrl={smallBackdropUrl} />
+      <CardList
+        results={displayedResults}
+        smallBackdropUrl={smallBackdropUrl}
+      />
     </div>
   );
-}
+};
 
 export function mapStateToProps(state) {
   return {
@@ -39,14 +44,11 @@ export function mapStateToProps(state) {
     smallBackdropUrl: state.getIn(['imageUrls', 'smallBackdropUrl']),
     decadeFilterValue: state.getIn(['filters', 'decade']),
     genreFilterValue: state.getIn(['filters', 'genre']),
-    genres: state.get('genres')
-  }
+    genres: state.get('genres'),
+  };
 }
 
-export default connect(
-  mapStateToProps,
-  {
-    updateQuery: changeSearchQuery,
-    getApiConfiguration
-  }
-)(MovieSearch);
+export default connect(mapStateToProps, {
+  updateQuery: changeSearchQuery,
+  getApiConfiguration,
+})(MovieSearch);

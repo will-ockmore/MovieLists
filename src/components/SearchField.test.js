@@ -3,13 +3,9 @@ import { mount } from 'enzyme';
 
 import SearchField from './SearchField';
 
-
 describe('SearchField', () => {
-
   it('renders', () => {
-    const wrapper = mount(
-      <SearchField updateQuery={jest.fn} query="bleh" />
-    );
+    const wrapper = mount(<SearchField updateQuery={jest.fn} query="bleh" />);
 
     expect(wrapper.find('.search-input').length).toBe(1);
     expect(wrapper.find('input').length).toBe(1);
@@ -23,7 +19,7 @@ describe('SearchField', () => {
     );
 
     const input = wrapper.find('input');
-    input.simulate('change', {target: {value: 'blib'}})
+    input.simulate('change', { target: { value: 'blib' } });
 
     expect(updateQuery).toHaveBeenCalledWith('blib');
   });
@@ -37,10 +33,10 @@ describe('SearchField', () => {
 
     const input = wrapper.find('input');
 
-    input.simulate('keyDown', {keyCode: 12, target: {value: 'blib'}});
+    input.simulate('keyDown', { keyCode: 12, target: { value: 'blib' } });
     expect(updateQuery).not.toHaveBeenCalled();
 
-    input.simulate('keyDown', {keyCode: 13, target: {value: 'flibble'}});
+    input.simulate('keyDown', { keyCode: 13, target: { value: 'flibble' } });
     expect(updateQuery).toHaveBeenCalledWith('flibble', true);
   });
 });

@@ -8,6 +8,4 @@ require('dotenv').config({ silent: true });
 
 var runDevServer = require('./startDevServer.js');
 
-
-runDevServer()
-  .catch(err => console.log(chalk.red(err.stack)));
+runDevServer().catch(err => console.log(chalk.red(err.stack)));

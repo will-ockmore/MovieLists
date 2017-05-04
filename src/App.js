@@ -8,8 +8,7 @@ import MovieDetails from './components/MovieDetails';
 import './index.css';
 import { ROOT_ROUTE } from './index.js';
 
-
-export const App = ({ store }) =>
+export const App = ({ store }) => (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path={ROOT_ROUTE} component={Main}>
@@ -17,6 +16,7 @@ export const App = ({ store }) =>
         <Route path={`${ROOT_ROUTE}:id`} component={MovieDetails} />
       </Route>
     </Router>
-  </Provider>;
+  </Provider>
+);
 
 export default App;

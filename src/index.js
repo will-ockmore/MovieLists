@@ -5,14 +5,10 @@ import store from './redux/store';
 
 export const ROOT_ROUTE = '/';
 
-
 const render = () => {
   const App = require('./App').default;
 
-  ReactDOM.render(
-    <App store={store} />,
-    document.getElementById('root')
-  );
+  ReactDOM.render(<App store={store} />, document.getElementById('root'));
 };
 
 if (module.hot) {

@@ -24,7 +24,7 @@ function setupCompiler() {
 
   // "done" event fires when Webpack has finished recompiling the bundle.
   // Whether or not you have warnings or errors, you will get this event.
-  compiler.plugin('done', (stats) => {
+  compiler.plugin('done', stats => {
     // We have switched off the default Webpack output in WebpackDevServer
     // options so we are going to "massage" the warnings and errors and present
     // them in a readable focused way.
@@ -80,19 +80,21 @@ function runDevServer(port) {
   });
 
   // Launch WebpackDevServer.
-  devServer.listen(port, (err) => {
+  devServer.listen(port, err => {
     if (err) {
       return console.log(err);
     }
 
-    console.log(chalk.cyan('Starting the development server on port ') + chalk.yellow.bold(port));
+    console.log(
+      chalk.cyan('Starting the development server on port ') +
+        chalk.yellow.bold(port)
+    );
     openBrowser('http://localhost:' + port + '/');
   });
 }
 
 function run() {
-  return checkForPort(paths.devServerPort)
-    .then(runDevServer);
+  return checkForPort(paths.devServerPort).then(runDevServer);
 }
 
 module.exports = run;

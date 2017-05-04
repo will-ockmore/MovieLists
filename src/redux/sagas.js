@@ -13,7 +13,7 @@ export function makeRequestActionSet(actionType) {
     REQUEST: actionType + 'REQUEST',
     SUCCESS: actionType + 'SUCCESS',
     FAILURE: actionType + 'FAILURE',
-  }
+  };
 }
 
 // get movies saga
@@ -25,35 +25,37 @@ export function* fetchMovieResults(action) {
   const { query, noDelay } = action.payload;
 
   if (query) {
-   try {
-    if (!noDelay) {
-      yield delay(400);
-    }
+    try {
+      if (!noDelay) {
+        yield delay(400);
+      }
       const response = yield call(searchMovies, action.payload.query);
 
-      yield put({type: GET_MOVIES.SUCCESS, payload: response.results});
-
+      yield put({ type: GET_MOVIES.SUCCESS, payload: response.results });
     } catch (e) {
-      yield put({type: GET_MOVIES.FAILURE, payload: e.message});
+      yield put({ type: GET_MOVIES.FAILURE, payload: e.message });
     }
 
     yield delay(500);
 
     // get more results from later pages once the user stays on a result set
     try {
-      let furtherResponse = {results: []};
-      for(let i = 2; i < 9; i++) {
-        furtherResponse = yield call(searchMovies, action.payload.query, { page: i });
+      let furtherResponse = { results: [] };
+      for (let i = 2; i < 9; i++) {
+        furtherResponse = yield call(searchMovies, action.payload.query, {
+          page: i,
+        });
 
-        yield put({type: GET_FURTHER_MOVIES.SUCCESS, payload: furtherResponse.results});
+        yield put({
+          type: GET_FURTHER_MOVIES.SUCCESS,
+          payload: furtherResponse.results,
+        });
       }
-
     } catch (e) {
-      yield put({type: GET_FURTHER_MOVIES.FAILURE, payload: e.message})
+      yield put({ type: GET_FURTHER_MOVIES.FAILURE, payload: e.message });
     }
-
   } else {
-    yield put({type: actions.CLEAR_RESULTS});
+    yield put({ type: actions.CLEAR_RESULTS });
     yield delay(600);
   }
 }
@@ -73,17 +75,17 @@ function* fetchConfig(action) {
   try {
     const response = yield call(getConfig);
 
-    yield put({type: GET_BACKDROP_URL.SUCCESS, payload: response.images});
+    yield put({ type: GET_BACKDROP_URL.SUCCESS, payload: response.images });
   } catch (e) {
-    yield put({type: GET_BACKDROP_URL.FAILURE, payload: e.message});
+    yield put({ type: GET_BACKDROP_URL.FAILURE, payload: e.message });
   }
 
   try {
     const response = yield call(getGenres);
 
-    yield put({type: GET_GENRES.SUCCESS, payload: response.genres});
-  } catch(e) {
-    yield put({type: GET_GENRES.FAILURE, payload: e.message});
+    yield put({ type: GET_GENRES.SUCCESS, payload: response.genres });
+  } catch (e) {
+    yield put({ type: GET_GENRES.FAILURE, payload: e.message });
   }
 }
 
@@ -95,13 +97,17 @@ function* getConfiguration() {
 export const GET_MOVIE_DETAILS = makeRequestActionSet('GET_MOVIE_DETAILS');
 
 function* fetchMovieDetails(action) {
- try {
-  yield put({type: GET_MOVIE_DETAILS.REQUEST, payload: action.payload});
-  const response = yield call(getMovie, action.payload.id, Map({append_to_response: 'credits,recommendations'}));
+  try {
+    yield put({ type: GET_MOVIE_DETAILS.REQUEST, payload: action.payload });
+    const response = yield call(
+      getMovie,
+      action.payload.id,
+      Map({ append_to_response: 'credits,recommendations' })
+    );
 
-  yield put({type: GET_MOVIE_DETAILS.SUCCESS, payload: response});
+    yield put({ type: GET_MOVIE_DETAILS.SUCCESS, payload: response });
   } catch (e) {
-    yield put({type: GET_MOVIE_DETAILS.FAILURE, payload: e.message});
+    yield put({ type: GET_MOVIE_DETAILS.FAILURE, payload: e.message });
   }
 }
 
@@ -110,9 +116,5 @@ function* getMovieDetails() {
 }
 
 export default function* rootSaga() {
-  yield [
-    searchForMovies(),
-    getConfiguration(),
-    getMovieDetails(),
-  ]
-};
+  yield [searchForMovies(), getConfiguration(), getMovieDetails()];
+}

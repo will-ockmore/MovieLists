@@ -5,7 +5,7 @@ export const SEARCH = {
   MOVIES: '/search/movie',
   TV: '/search/tv',
   PEOPLE: '/search/person',
-}
+};
 
 // items
 export const MOVIE = '/movie';

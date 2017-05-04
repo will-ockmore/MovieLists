@@ -9,17 +9,11 @@ import CardList from './CardList';
 
 import { MovieSearch, mapStateToProps } from './MovieSearch';
 
-
 describe('MovieSearch', () => {
-
-  const results =
-    List(Range(0, 8))
-      .map(i => MOVIE.merge({id: `${i}`}));
+  const results = List(Range(0, 8)).map(i => MOVIE.merge({ id: `${i}` }));
 
   it('renders', () => {
-    const wrapper = shallow(
-      <MovieSearch results={results} query="bleh" />
-    );
+    const wrapper = shallow(<MovieSearch results={results} query="bleh" />);
 
     expect(wrapper.find('h2').length).toBe(1);
     expect(wrapper.find('h2').text()).toContain('Search for a film below');
@@ -33,17 +27,17 @@ describe('MovieSearch', () => {
       query: 'bleh',
       responses: {
         movies: {
-          results: 'some results'
-        }
+          results: 'some results',
+        },
       },
       imageUrls: {
-        smallBackdropUrl: 'small backdrop'
+        smallBackdropUrl: 'small backdrop',
       },
       filters: {
         decade: 'the decade filter',
-        genre: 'the genre filter'
+        genre: 'the genre filter',
       },
-      genres: 'some genres'
+      genres: 'some genres',
     });
 
     expect(mapStateToProps(initialState)).toEqual({
@@ -52,7 +46,7 @@ describe('MovieSearch', () => {
       smallBackdropUrl: 'small backdrop',
       decadeFilterValue: 'the decade filter',
       genreFilterValue: 'the genre filter',
-      genres: 'some genres'
+      genres: 'some genres',
     });
   });
 });

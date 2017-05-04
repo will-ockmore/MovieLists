@@ -6,9 +6,7 @@ import { DECADES, GENRES } from '../../test/testFixtures';
 
 import { SearchFilters, mapStateToProps } from './SearchFilters';
 
-
 describe('SearchFilters', () => {
-
   it('renders', () => {
     const wrapper = mount(
       <SearchFilters
@@ -16,13 +14,18 @@ describe('SearchFilters', () => {
         decadeFilterValue=""
         genreFilterValue=""
         decades={DECADES}
-        resultGenres={GENRES}/>
+        resultGenres={GENRES}
+      />
     );
 
     expect(wrapper.find('.filter-card').length).toBe(1);
     expect(wrapper.find('select').length).toBe(2);
-    expect(wrapper.find('option').map(node => node.text())).toContain(`The '60s`);
-    expect(wrapper.find('option').map(node => node.text())).toContain(GENRES.first());
+    expect(wrapper.find('option').map(node => node.text())).toContain(
+      `The '60s`
+    );
+    expect(wrapper.find('option').map(node => node.text())).toContain(
+      GENRES.first()
+    );
   });
 
   it('calls onChange functions', () => {
@@ -37,7 +40,8 @@ describe('SearchFilters', () => {
         decadeFilterValue=""
         genreFilterValue=""
         decades={DECADES}
-        resultGenres={GENRES}/>
+        resultGenres={GENRES}
+      />
     );
 
     wrapper.find('select').forEach(node => node.simulate('change'));
@@ -53,23 +57,20 @@ describe('SearchFilters', () => {
         movies: {
           resultGenres: 'all the genres',
           decades: 'all the decades',
-        }
+        },
       },
       filters: {
         decade: 'the decade',
         genre: 'the genre',
-      }
+      },
     });
 
-    expect(mapStateToProps(initialState, {params: {id: 123}}))
-    .toEqual(
-      {
-        query: 'bleh',
-        decades: 'all the decades',
-        resultGenres: 'all the genres',
-        decadeFilterValue: 'the decade',
-        genreFilterValue: 'the genre',
-      }
-      );
+    expect(mapStateToProps(initialState, { params: { id: 123 } })).toEqual({
+      query: 'bleh',
+      decades: 'all the decades',
+      resultGenres: 'all the genres',
+      decadeFilterValue: 'the decade',
+      genreFilterValue: 'the genre',
     });
+  });
 });

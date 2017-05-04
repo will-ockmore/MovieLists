@@ -3,11 +3,16 @@ import { Link } from 'react-router';
 
 import { ROOT_ROUTE } from '../index.js';
 
-
 export class ResultCard extends Component {
   render() {
-    const { movie, smallBackdropUrl } = this.props
-    const { overview, backdrop_path, title, release_date, id } = movie.toObject();
+    const { movie, smallBackdropUrl } = this.props;
+    const {
+      overview,
+      backdrop_path,
+      title,
+      release_date,
+      id,
+    } = movie.toObject();
 
     if (!overview || !backdrop_path) {
       return <noscript />;
@@ -16,7 +21,11 @@ export class ResultCard extends Component {
     return (
       <Link className="card" to={ROOT_ROUTE + id}>
         <div className="avatar pd-2">
-          <img className="backdrop" src={smallBackdropUrl + backdrop_path} alt="poster" />
+          <img
+            className="backdrop"
+            src={smallBackdropUrl + backdrop_path}
+            alt="poster"
+          />
         </div>
         <div className="text-content pd-2">
           <h2>{title}</h2>

@@ -8,7 +8,6 @@ import { getApiConfiguration } from '../redux/actions';
 import './App.css';
 
 export class Main extends Component {
-
   componentWillMount() {
     this.props.getApiConfiguration();
   }
